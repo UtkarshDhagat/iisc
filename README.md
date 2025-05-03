@@ -22,22 +22,23 @@ This is a real-time webcam-based simulator that visually mimics the effects of v
 1. **Clone the repository**
 
    git clone https://github.com/yourusername/retinal-vision-simulator.git
+   
    cd retinal-vision-simulator
 
-2. **Create a virtual environment (optional but recommended)**
+3. **Create a virtual environment (optional but recommended)**
 
    python -m venv venv
    source venv/bin/activate        # On Windows: venv\Scripts\activate
 
-3. **Install dependencies**
+4. **Install dependencies**
 
    pip install -r requirements.txt
 
-4. **Run the application**
+5. **Run the application**
 
    streamlit run app.py
 
-5. **Open your browser** and visit:
+6. **Open your browser** and visit:
 
    http://localhost:8501
 
