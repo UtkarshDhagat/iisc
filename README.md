@@ -29,7 +29,7 @@ This is a real-time webcam-based simulator that visually mimics the effects of v
 
    python -m venv venv
    
-   source venv/bin/activate        # On Windows: venv\Scripts\activate
+   source venv/bin/activate     
 
 5. **Install dependencies**
 
