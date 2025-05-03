@@ -17,16 +17,6 @@ This is a real-time webcam-based simulator that visually mimics the effects of v
 
 ---
 
-## 📁 Project Structure
-
-retinal-vision-simulator/
-├── app.py               # Main Streamlit application
-├── filters.py           # All disease simulation filter functions
-├── requirements.txt     # Python dependencies
-└── README.md            # Project documentation
-
----
-
 ## 🔧 Installation & Running Locally
 
 1. **Clone the repository**
@@ -54,17 +44,3 @@ retinal-vision-simulator/
 You should now see the live simulation with webcam access.
 
 ---
-
-## ✅ Requirements
-
-- Python 3.7 or above
-- Webcam
-- Google Chrome or Firefox (recommended for webcam permissions)
-
----
-
-## 👨‍💻 Author
-
-Utkarsh Dhagat  
-GitHub: https://github.com/UtkarshDhagat  
-Website: https://utkarshdhagat.github.io/Website/
