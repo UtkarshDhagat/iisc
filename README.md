@@ -1,0 +1,88 @@
+
+```markdown
+# 🧠 Retinal Disease Vision Simulator
+
+This is a real-time webcam-based simulator that visually mimics the effects of various retinal diseases such as **Glaucoma**, **Cataract**, **Diabetic Retinopathy**, and **Macular Degeneration**. Built using **Streamlit**, **OpenCV**, and **streamlit-webrtc**, it lets users adjust disease severity and observe its impact on vision.
+
+---
+
+## 🧰 Features
+
+- Live webcam stream directly in your browser
+- Simulates:
+  - Glaucoma (tunnel vision)
+  - Cataract (yellow tint and blur)
+  - Diabetic Retinopathy (random black blotches)
+  - Macular Degeneration (central black spot)
+- Adjustable severity slider for each condition
+- Lightweight and easy to run locally
+
+---
+
+## 📁 Project Structure
+
+```
+
+retinal-vision-simulator/
+├── app.py               # Main Streamlit application
+├── filters.py           # All disease simulation filter functions
+├── requirements.txt     # Python dependencies
+└── README.md            # Project documentation
+
+````
+
+---
+
+## 🔧 Installation & Running Locally
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/yourusername/retinal-vision-simulator.git
+cd retinal-vision-simulator
+````
+
+2. **Create a virtual environment (optional but recommended)**
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. **Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+4. **Run the application**
+
+```bash
+streamlit run app.py
+```
+
+5. **Open your browser** and visit:
+
+```
+http://localhost:8501
+```
+
+You should now see the live simulation with webcam access.
+
+---
+
+## ✅ Requirements
+
+* Python 3.7 or above
+* Webcam
+* Google Chrome or Firefox (recommended for webcam permissions)
+
+---
+
+## 👨‍💻 Author
+
+Utkarsh Dhagat
+GitHub: [@UtkarshDhagat](https://github.com/UtkarshDhagat)
+Website: [https://utkarshdhagat.github.io/Website/](https://utkarshdhagat.github.io/Website/)
+
+```
