@@ -28,17 +28,18 @@ This is a real-time webcam-based simulator that visually mimics the effects of v
 3. **Create a virtual environment (optional but recommended)**
 
    python -m venv venv
+   
    source venv/bin/activate        # On Windows: venv\Scripts\activate
 
-4. **Install dependencies**
+5. **Install dependencies**
 
    pip install -r requirements.txt
 
-5. **Run the application**
+6. **Run the application**
 
    streamlit run app.py
 
-6. **Open your browser** and visit:
+7. **Open your browser** and visit:
 
    http://localhost:8501
 
