@@ -1,7 +1,7 @@
-import cv2
-import numpy as np
 import streamlit as st
-from PIL import Image
+import numpy as np
+import cv2
+from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 from filters import (
     simulate_glaucoma,
     simulate_cataract_yellow,
@@ -47,12 +47,9 @@ disease = st.sidebar.radio("Select Disease", [
     "Macular Degeneration"
 ])
 severity = st.sidebar.slider("Severity", 0.0, 1.0, 0.5, 0.05)
-start_cam = st.sidebar.button("🎥 Start Camera")
-
-FRAME_WINDOW = st.empty()
 
 if disease == "Cataract":
-    cataract_mode = st.selectbox(
+    cataract_mode = st.sidebar.selectbox(
         "Cataract Type",
         ["yellow", "blur"],
         format_func=lambda x: {
@@ -63,32 +60,30 @@ if disease == "Cataract":
 else:
     cataract_mode = None
 
-def apply_filter(frame):
-    if disease == "Glaucoma":
-        return simulate_glaucoma(frame, severity)
-    elif disease == "Cataract":
-        mode = cataract_mode
-        if mode == "yellow":
-            return simulate_cataract_yellow(frame, severity)
-        elif mode == "blur":
-            return simulate_cataract_blur(frame, severity)
-    elif disease == "Diabetic Retinopathy":
-        return simulate_retinopathy(frame, severity)
-    elif disease == "Macular Degeneration":
-        return simulate_macular_degeneration(frame, severity)
-    return frame
+class VideoTransformer(VideoTransformerBase):
+    def __init__(self):
+        self.severity = severity
+        self.static_mask = [None]
 
-if start_cam:
-    cap = cv2.VideoCapture(0)
-    while cap.isOpened():
-        ret, frame = cap.read()
-        if not ret:
-            st.error("Failed to access camera.")
-            break
-        frame = cv2.resize(frame, (640, 480))
-        processed = apply_filter(frame)
-        orig_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        proc_rgb = cv2.cvtColor(processed, cv2.COLOR_BGR2RGB)
-        stacked = np.hstack((orig_rgb, proc_rgb))
-        FRAME_WINDOW.image(stacked, channels="RGB")
-    cap.release()
+    def transform(self, frame):
+        img = frame.to_ndarray(format="bgr24")
+        if disease == "Glaucoma":
+            return simulate_glaucoma(img, self.severity)
+        elif disease == "Cataract":
+            if cataract_mode == "yellow":
+                return simulate_cataract_yellow(img, self.severity)
+            elif cataract_mode == "blur":
+                return simulate_cataract_blur(img, self.severity)
+        elif disease == "Diabetic Retinopathy":
+            return simulate_retinopathy(img, self.severity, self.static_mask)
+        elif disease == "Macular Degeneration":
+            return simulate_macular_degeneration(img, self.severity)
+        return img
+
+webrtc_streamer(
+    key="live",
+    video_transformer_factory=VideoTransformer,
+    media_stream_constraints={"video": True, "audio": False},
+    async_transform=True
+)
+
